@@ -1,0 +1,164 @@
+%preamble document set-up
+
+%-----------------------------------------------------
+
+%Package Includes
+
+\usepackage{graphicx}
+%Inclusion of graphics, including resizing etc.
+\usepackage[top=2.5cm,bottom=2cm]{geometry}
+%For page layout, etc.
+\usepackage{amssymb}
+%Symbols
+\usepackage{setspace} 
+%Set linespacing
+\usepackage[hidelinks]{hyperref} 
+%Clickable links, i.e. \ref
+\usepackage[toc,nonumberlist]{glossaries} 
+%Glossary Package
+\makeglossary 
+%Needed to make the glossary
+\usepackage{todonotes} 
+%For making to-do notes in the pdf
+\usepackage{float} 
+%Redefine the float, now we can use 'H' instead of 'h'
+\usepackage{array} 
+%Extend the array environment
+\usepackage{pdfpages} 
+%Allows the inclusion of external pdf's 
+\usepackage{color, colortbl}
+%Allows us to manage the colour of items in the final output 
+\usepackage{fancyhdr}
+%Allows control of the headers and footers
+\usepackage{nameref}
+%Refer to sections by their name
+\usepackage{chemfig} 
+%Draw chemical diagrams
+\usepackage{listings} 
+%Typeset programming languages
+\lstset{language=bash, numbers=left, frame=single, breaklines=true, numberstyle=\footnotesize}
+\usepackage{framed} 
+%Framed or shaded regions that can break across pages
+\usepackage[os=win]{menukeys}
+%Format menu sequences, paths and keystrokes from lists
+\usepackage{draftwatermark} 
+%Put a grey textual watermark on document pages
+\usepackage{tikz} 
+%Used for drawing within the package
+\usetikzlibrary{positioning,decorations.markings,patterns}
+\usepackage{multirow} 
+%Create tabular cells spanning multiple rows
+\usepackage[scientific-notation=true]{siunitx} 
+%For putting certain scientific notation i.e. x10^.
+\usepackage{titlesec} 
+%Custom titles
+\usepackage[normalem]{ulem}
+%Strikethrough text with \sout{}
+
+%-----------------------------------------------------
+%Paragraph and Chapter Styling,
+
+%These are the two commands that allow subsubsections to have numbering and show in the T.O.C.
+%The latex numbering system is as follows:
+
+% -1 Part
+% 0 Chapter
+% 1 Section
+% 2 Subsection
+% 3 Subsubsection
+% 4 Paragraph
+% 5 Subparagraph
+
+%\setcounter{tocdepth}{3}
+%\setcounter{secnumdepth}{3}
+
+\titleformat*{\section}{\LARGE\bfseries}
+\titleformat*{\subsection}{\Large\bfseries}
+\titleformat*{\subsubsection}{\large\bfseries}
+
+%-----------------------------------------------------
+
+%Page and Header Styling
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.25pt}
+\fancyhead[L]{\textbf{Adam Rees} - \textit{487653}}
+\fancyhead[R]{WCPC - Swansea University}
+\setlength\voffset{0in}
+
+%-----------------------------------------------------
+
+%Watermark
+\SetWatermarkText{DRAFT}
+\SetWatermarkScale{4}
+\SetWatermarkLightness{0.8}
+%\SetWatermarkColor{red}
+
+%-----------------------------------------------------
+
+%Document meta-data
+
+\hypersetup{
+    pdftitle={TITLE HERE},
+    pdfauthor={Adam Rees},
+    pdfsubject={Mechanical Engieering},
+    pdfcreator={Adam Rees},
+	pdfstartview={XYZ null null 1.00},
+}
+
+%-----------------------------------------------------
+
+%reduce pdf size
+
+\pdfminorversion=5
+\pdfobjcompresslevel=2
+    
+%-----------------------------------------------------
+
+%Custom Commands
+
+\definecolor{Grey}{gray}{0.95}
+\lstset{language=bash, numbers=left, frame=single, breaklines=true, numberstyle=\footnotesize}
+
+%-----------------------------------------------------
+
+%Include Glossary
+
+\input{./supportfiles/gloss}
+
+%-----------------------------------------------------
+
+%Tiny Leaves
+
+\newcounter{leafs}
+ 
+\tikzset{%
+leaf/.style={/utils/exec=\setcounter{leafs}{0},
+    decorate,decoration={
+        markings,
+        mark=at position 0 with {
+            \draw [bend left=35,fill=black] (0,0) to ++(-0.3,0.02*\sign) to ++(0.3,-0.02*\sign);},
+        mark=between positions 0.02 and 0.5 step 0.05 with {
+            \draw [bend right=35,fill=black] (0.01*\sign,0.01*\sign) to ++(-0.2-\mult,0.3*\sign+\mult*\sign) to ++(0.2+\mult,-0.3*\sign-\mult*\sign);
+            \stepcounter{leafs};},
+        mark=between positions 0.54 and 0.99 step 0.04875 with {
+            \addtocounter{leafs}{-1}
+            \draw [bend left=35,fill=black] (-0.01*\sign,0.01*\sign) to ++(0.2+\mult,0.3*\sign+\mult*\sign) to ++(-0.2-\mult,-0.3*\sign-\mult*\sign);},
+    }
+}}
+ 
+\newcommand{\leaves}[1]{%
+\setlength{\lineskip}{6pt plus 6pt minus 0pt}\lineskiplimit=\baselineskip
+\def\mult{0.03*\theleafs}
+\begin{tikzpicture}
+    \node [align=center] (box) {\uppercase{#1}};
+    \node [below left=of box] (ll) {};
+    \node [above left=of box] (ul) {};
+    \node [below right=of box] (lr) {};
+    \node [above right=of box] (ur) {};
+    \def\sign{-1}
+    \draw [bend right=45, fill=black,postaction=leaf] (ul) to (ll) to ++(0.1,0.1) to [bend left=45] (ul);
+    \def\sign{1}
+    \draw [bend left=45, fill=black,postaction=leaf] (ur) to (lr) to ++ (-0.1,0.1) to [bend right=45] (ur);
+\end{tikzpicture}
+}

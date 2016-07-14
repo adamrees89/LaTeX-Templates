@@ -1,0 +1,38 @@
+%& -job-name=Output
+\documentclass[11pt, a4paper]{report}
+
+\input{./supportfiles/set-up}
+
+\begin{document}
+
+%\input{./supportfiles/title.tex}
+%\input{./supportfiles/internal_pages.tex}
+%\input{./supportfiles/declaration.tex}
+\pagenumbering{roman} \setcounter{page}{2}
+\tableofcontents
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+\printglossary
+\newpage
+
+\pagenumbering{arabic} \setcounter{page}{1}
+\doublespacing
+
+%Beginning of actual writing
+
+%--------------------------------------------
+%input tex files here
+%\input{•}
+%--------------------------------------------
+
+%\fancyhead[C]{Bibliography}
+
+%\bibliographystyle{plain}
+%\bibliography{./library}
+%\addcontentsline{toc}{chapter}{Bibliography}
+
+%\appendix
+
+\end{document}
