@@ -6,3 +6,5 @@ The premise is simple, LaTeX is a powerful language, and can be used in many way
 Master is kept clean, and changes are brought in through pull requests from forks or branches
 
 Everyone is welcome to help me improve the template, raise issues using the Issues tab, help write the wiki, or fork the repo and make your own changes to be pulled back in!  Sharing is caring!
+
+Any questions?  Leave me a message on Gitter, or raise an Issue
