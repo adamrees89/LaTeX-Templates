@@ -7,4 +7,4 @@ Master is kept clean, and changes are brought in through pull requests from fork
 
 Everyone is welcome to help me improve the template, raise issues using the Issues tab, help write the wiki, or fork the repo and make your own changes to be pulled back in!  Sharing is caring!
 
-Any questions?  Leave me a message on [Gitter](https://gitter.im/LaTeX-Template/Lobby), or raise an Issue
+Any questions/problems?  Leave me a message on [Gitter](https://gitter.im/LaTeX-Template/Lobby), or raise a new [Issue](https://github.com/adamrees89/LaTeX-Templates/issues/new)
